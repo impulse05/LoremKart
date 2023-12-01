@@ -1,12 +1,20 @@
 import express from "express";
 const router = express.Router();
-import { getMyProfile, login, registerUser } from "../controllers/Auth.js";
-import { isAuthenicated } from "../middlewares/Auth.js";
+import {
+  forgotPassword,
+  getMyProfile,
+  login,
+  registerUser,
+  resetPassword,
+  verifyEmail,
+} from "../controllers/Auth.js";
+import { verifyUser } from "../passport.js";
 
 router.post("/signup", registerUser);
 router.post("/login", login);
-// router.get("/verif-email")
-router.get("/myprofile", isAuthenicated, getMyProfile);
-// router.put("/forgot")
+router.get("/verify-email/:token", verifyEmail);
+router.get("/myprofile", verifyUser, getMyProfile);
+router.put("/forgot", forgotPassword);
+router.put("/resetPassword/:token", resetPassword);
 
 export default router;

@@ -22,6 +22,22 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
+    emailToken: {
+      type: String,
+      select: false,
+    },
+    forgetPasswordToken: {
+      type: String,
+      select: false,
+    },
+    forgetPasswordExpiry: {
+      type: String,
+      select: false,
+    },
     role: {
       type: String,
       enum: ["user", "admin"],
@@ -36,7 +52,7 @@ userSchema.methods.getJwtToken = function () {
     expiresIn: process.env.JWT_EXPIRE,
   });
 };
-// plugin used for automatic hasing salting and password storage.
+// plugin used for automatic hashing salting and password storage.
 userSchema.plugin(passportLocalMongoose, { usernameField: "email" });
 
-export default mongoose.model("users", userSchema);
+export default mongoose.model("User", userSchema);
