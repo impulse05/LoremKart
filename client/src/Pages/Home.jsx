@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Card, Carousel, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import ProductCard from './../Components/ProductCard';
 
 const HomePage = () => {
     const featuredProducts = [
@@ -29,7 +30,7 @@ const HomePage = () => {
 
     return (
         <div>
-            <section className="hero bg-dark text-white text-center">
+            <section className="hero  text-center">
                 <Container>
                     <h1>Welcome to LoremKart</h1>
                     <p>Your go-to destination for quality products and great deals!</p>
@@ -44,19 +45,7 @@ const HomePage = () => {
                     <h2 className="text-center mb-4">Featured Products</h2>
                     <Row>
                         {featuredProducts.map((product) => (
-                            <Col key={product.id} md={4} className="mb-4">
-                                <Card>
-                                    <Card.Img variant="top" src={product.image} alt={product.name} />
-                                    <Card.Body>
-                                        <Card.Title>{product.name}</Card.Title>
-                                        <Card.Text>{product.category}</Card.Text>
-                                        <Card.Text className="font-weight-bold">{product.price}</Card.Text>
-                                        <Link to={`/product/${product.id}`}>
-                                            <Button variant="primary">View Details</Button>
-                                        </Link>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
+                            <ProductCard product={product} />
                         ))}
                     </Row>
                 </section>
@@ -70,34 +59,34 @@ const HomePage = () => {
                         enjoyable shopping experience for our valued customers.
                     </p>
                 </section>
-
-                <section className="carousel-section mt-5">
-                    <h2>Discover More</h2>
-                    <Carousel>
-                        <Carousel.Item>
-                            <img
-                                className="d-block w-100"
-                                src="https://via.placeholder.com/1200x400"
-                                alt="First slide"
-                            />
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <img
-                                className="d-block w-100"
-                                src="https://via.placeholder.com/1200x400"
-                                alt="Second slide"
-                            />
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <img
-                                className="d-block w-100"
-                                src="https://via.placeholder.com/1200x400"
-                                alt="Third slide"
-                            />
-                        </Carousel.Item>
-                    </Carousel>
-                </section>
             </Container>
+            <section className="carousel-section mt-5 text-center">
+                <h2 className='m-4'>Discover More</h2>
+                <Carousel>
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100"
+                            src="https://via.placeholder.com/1200x400"
+                            alt="First slide"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100"
+                            src="https://via.placeholder.com/1200x400"
+                            alt="Second slide"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100"
+                            src="https://via.placeholder.com/1200x400"
+                            alt="Third slide"
+                        />
+                    </Carousel.Item>
+                </Carousel>
+            </section>
+
         </div>
     );
 };

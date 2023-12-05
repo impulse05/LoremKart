@@ -1,14 +1,29 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { signUp } from './auth';
 
 const RegisterPage = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleRegister = (e) => {
+    const [phone, setPhone] = useState('')
+    const [address, setAddress] = useState('')
+    const handleRegister = async (e) => {
         e.preventDefault();
-        // Add your registration logic here
+        signUp({
+            name,
+            email,
+            password,
+            phone,
+            address
+        }).then(() => {
+            setAddress('');
+            setEmail('');
+            setPassword('');
+            setPhone('');
+            setName('');
+        })
         console.log('Register clicked');
     };
 
@@ -48,6 +63,31 @@ const RegisterPage = () => {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
+                            />
+                        </Form.Group>
+                        <Form.Group controlId="formBasicPhone">
+                            <Form.Label>Phone</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Phone"
+                                value={phone}
+                                onChange={(e) => setPhone(e.target.value)}
+                                required
+                                minLength={10}
+                                maxLength={10}
+                            />
+                        </Form.Group>
+
+                        <Form.Group controlId="formBasicAddress">
+                            <Form.Label>Address</Form.Label>
+                            <Form.Control
+                                as="textarea"
+                                placeholder="Address"
+                                value={address}
+                                onChange={(e) => setAddress(e.target.value)}
+                                required
+                                minLength={10}
+                                maxLength={10}
                             />
                         </Form.Group>
 

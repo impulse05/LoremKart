@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { Login } from './auth';
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
@@ -7,7 +8,10 @@ const LoginPage = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        // Add your login logic here
+        Login(email, password).then(() => {
+            setEmail('')
+            setPassword('')
+        })
         console.log('Login clicked');
     };
 

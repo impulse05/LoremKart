@@ -54,7 +54,7 @@ export const login = async (req, res) => {
       throw new Error("Invalid Credentials");
     }
 
-    console.log(user);
+    // console.log(user);
 
     if (!user.isVerified) {
       throw new Error("Verify your E-mail");

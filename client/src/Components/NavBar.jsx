@@ -7,11 +7,14 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import React from 'react'
 import { NavLink, Navigate, useNavigate } from 'react-router-dom';
+import { isAuthenticated, logout } from '../Pages/auth';
 
 export default function NavBar() {
     const navigate = useNavigate();
-  return (
-   
+    const user = isAuthenticated();
+    console.log(user);
+    return (
+
         <Navbar expand="lg" className="bg-light">
             <Container fluid>
                 <Navbar.Brand href="#">Lorem Kart</Navbar.Brand>
@@ -22,18 +25,19 @@ export default function NavBar() {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                      <Nav.Link ><NavLink to="/">Home</NavLink></Nav.Link>
-                      <Nav.Link ><NavLink  to="/products">Products</NavLink></Nav.Link>
-                      <Nav.Link ><NavLink to="/admin" >Admin</NavLink></Nav.Link>
-                      <Nav.Link ><NavLink to="/myprofile" >My Profile</NavLink></Nav.Link>
-               
+                        <Nav.Link ><NavLink to="/">Home</NavLink></Nav.Link>
+                        <Nav.Link ><NavLink to="/products">Products</NavLink></Nav.Link>
+                        {user?.role == 'admin' && <Nav.Link ><NavLink to="/admin" >Admin</NavLink></Nav.Link>}
+                        <Nav.Link ><NavLink to="/myprofile" >My Profile</NavLink></Nav.Link>
+
                     </Nav>
 
-                    <Button variant=" m-2 bg-primary" onClick={()=>navigate("/login")}>Login</Button>
-                  <Button variant=" m-2 bg-primary" onClick={() => navigate("/signup")} >Signup</Button>
+                    {!user && <Button variant=" m-2 bg-primary" onClick={() => navigate("/login")}>Login</Button>}
+                    {!user && <Button variant=" m-2 bg-primary" onClick={() => navigate("/signup")} >Signup</Button>}
+                    {user && <Button variant=" m-2 bg-primary" onClick={logout} >Logout</Button>}
 
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-  )
+    )
 }
