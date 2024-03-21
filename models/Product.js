@@ -23,6 +23,9 @@ const productSchema = new mongoose.Schema(
     quantity: {
       type: Number,
     },
+    description: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

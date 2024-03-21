@@ -5,14 +5,14 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink, Navigate, useNavigate } from 'react-router-dom';
 import { isAuthenticated, logout } from '../Pages/auth';
 
-export default function NavBar() {
+export default function NavBar({ loading = false, user = false, setLoading }) {
     const navigate = useNavigate();
-    const user = isAuthenticated();
-    console.log(user);
+
+
     return (
 
         <Navbar expand="lg" className="bg-light">
@@ -34,7 +34,10 @@ export default function NavBar() {
 
                     {!user && <Button variant=" m-2 bg-primary" onClick={() => navigate("/login")}>Login</Button>}
                     {!user && <Button variant=" m-2 bg-primary" onClick={() => navigate("/signup")} >Signup</Button>}
-                    {user && <Button variant=" m-2 bg-primary" onClick={logout} >Logout</Button>}
+                    {user && <Button variant=" m-2 bg-primary" onClick={() => {
+                        logout()
+                        setLoading(!loading);
+                    }} >Logout</Button>}
 
                 </Navbar.Collapse>
             </Container>

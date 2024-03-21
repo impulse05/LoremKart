@@ -45,11 +45,23 @@ export const getAllProducts = async (req, res) => {
 
 export const getProductbyId = async (req, res) => {
   try {
-    throw new Error("Yet to be implemented");
+    const product = await Product.findById(req.params.id);
+    if (!product) {
+      res.status(400).json({
+        success: false,
+        messege: "Prudct not found",
+      });
+    } else {
+      res.status(200).json({
+        success: true,
+        messege: "Prudct details received",
+        data: product,
+      });
+    }
   } catch (error) {
     return res.status(400).json({
       success: false,
-      info: "Error in category",
+      info: "Error in getting product by ID",
       message: error.message,
     });
   }
@@ -57,7 +69,19 @@ export const getProductbyId = async (req, res) => {
 
 export const updateProductbyId = async (req, res) => {
   try {
-    throw new Error("Yet to be implemented");
+    const product = await Product.findById(req.params.id);
+    if (!product) {
+      res.status(400).json({
+        success: false,
+        messege: "Prudct not found",
+      });
+    } else {
+      res.status(200).json({
+        success: true,
+        messege: "Prudct details received",
+        data: product,
+      });
+    }
   } catch (error) {
     return res.status(400).json({
       success: false,

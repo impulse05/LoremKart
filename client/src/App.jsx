@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,8 +12,19 @@ import MyProfile from './Pages/MyProfile'
 import NavBar from "./Components/Navbar"
 import { ToastContainer } from "react-toastify"
 import ProductForm from "./Pages/ProductForm";
+import ProductDetail from "./Pages/ProductDetail";
+import { isAuthenticated } from "./Pages/auth";
 
 function App() {
+  const [user, setUser] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const user1 = isAuthenticated();
+    setUser(user1);
+
+
+  }, [loading])
   return (
     <Router>
       <ToastContainer position="top-center"
@@ -26,11 +37,12 @@ function App() {
         draggable
         pauseOnHover
         theme="light" />
-      <NavBar />
+      <NavBar user={user} loading={loading} setLoading={setLoading} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductPage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/products/:id" element={<ProductDetail />} />
+        <Route path="/login" element={<LoginPage loading={loading} setLoading={setLoading} user={user} />} />
         <Route path="/signup" element={<RegisterPage />} />
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/MyProfile" element={<MyProfile />} />

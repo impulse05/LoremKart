@@ -2,34 +2,40 @@ import React from 'react';
 import { Container, Row, Col, Card, Carousel, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ProductCard from './../Components/ProductCard';
+import HomeCarousel from '../Components/HomeCarousel';
 
 const HomePage = () => {
+    const carouselItems = [
+        { link: "https://via.placeholder.com/1200x400", text: "chetan" },
+        { link: "https://via.placeholder.com/200x400", text: "chetan" },
+    ];
     const featuredProducts = [
         {
-            id: 1,
+            _id: 1,
             name: 'Smartphone X',
             category: 'Electronics',
-            price: '$499.99',
+            price: '499.99',
             image: 'https://via.placeholder.com/300',
         },
         {
-            id: 2,
+            _id: 2,
             name: 'Stylish Backpack',
             category: 'Fashion',
-            price: '$49.99',
+            price: '49.99',
             image: 'https://via.placeholder.com/300',
         },
         {
-            id: 3,
+            _id: 3,
             name: 'Home Speaker System',
             category: 'Home & Living',
-            price: '$199.99',
+            price: '199.99',
             image: 'https://via.placeholder.com/300',
         },
     ];
 
     return (
         <div>
+
             <section className="hero  text-center">
                 <Container>
                     <h1>Welcome to LoremKart</h1>
@@ -39,7 +45,7 @@ const HomePage = () => {
                     </Link>
                 </Container>
             </section>
-
+            <HomeCarousel caruselItems={carouselItems} />
             <Container className="mt-5">
                 <section className="featured-products">
                     <h2 className="text-center mb-4">Featured Products</h2>
@@ -60,32 +66,6 @@ const HomePage = () => {
                     </p>
                 </section>
             </Container>
-            <section className="carousel-section mt-5 text-center">
-                <h2 className='m-4'>Discover More</h2>
-                <Carousel>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://via.placeholder.com/1200x400"
-                            alt="First slide"
-                        />
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://via.placeholder.com/1200x400"
-                            alt="Second slide"
-                        />
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://via.placeholder.com/1200x400"
-                            alt="Third slide"
-                        />
-                    </Carousel.Item>
-                </Carousel>
-            </section>
 
         </div>
     );

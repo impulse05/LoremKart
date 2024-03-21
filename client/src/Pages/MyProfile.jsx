@@ -16,7 +16,10 @@ const MyProfile = () => {
     ]);
 
     const handleCheckout = () => {
-        // Add your checkout logic here
+        const total=0;
+        orders.map((orders), ()=>{
+            total+=orders.price;
+        })
         console.log('Checkout clicked');
     };
 

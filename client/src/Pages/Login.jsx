@@ -1,19 +1,30 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { Login } from './auth';
+import { useNavigate } from 'react-router-dom';
 
-const LoginPage = () => {
+const LoginPage = ({ loading = false, setLoading, user = false }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
         Login(email, password).then(() => {
             setEmail('')
             setPassword('')
+            setLoading(!loading);
         })
         console.log('Login clicked');
     };
+    if (user) {
+        setTimeout(() => {
+            navigate("/")
+        }, 2000);
+        return "You are alread logined";
+
+    }
+
 
     return (
         <Container>
