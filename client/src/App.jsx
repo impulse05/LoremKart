@@ -8,8 +8,8 @@ import ProductPage from './Pages/Product'
 import AdminPage from './Pages/Admin'
 import HomePage from './Pages/Home'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import MyProfile from './Pages/MyProfile'
-import NavBar from "./Components/Navbar"
+import MyProfile from './Pages/MyProfile';
+import NavBar from "./Components/NavBar";
 import { ToastContainer } from "react-toastify"
 import ProductForm from "./Pages/ProductForm";
 import ProductDetail from "./Pages/ProductDetail";
