@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-const BASE_URL = "http://localhost:8080/api";
+const BASE_URL = "/api";
 export const Login = async (email, password) => {
   try {
     const result = await axios.post(`${BASE_URL}/login`, {

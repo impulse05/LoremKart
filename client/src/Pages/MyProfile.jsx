@@ -16,7 +16,7 @@ const MyProfile = () => {
     ]);
 
     const handleCheckout = () => {
-        const total=0;
+        let total=0;
         orders.map((orders), ()=>{
             total+=orders.price;
         })

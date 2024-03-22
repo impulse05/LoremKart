@@ -1,7 +1,7 @@
 // all the apise
 import axios from "axios";
 import { toast } from "react-toastify";
-const BASE_URL = "http://localhost:8080/api";
+const BASE_URL = "/api";
 export const getProducts = async () => {
   // TODO API call
   try {

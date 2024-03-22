@@ -7,5 +7,19 @@ export default defineConfig({
     react({
       include: "**/*.jsx",
     }),
+   
+    // add a proxy for api
+   
+
+
   ],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
 });
